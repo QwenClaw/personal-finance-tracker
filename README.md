@@ -45,3 +45,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 2 — #2: Build Main Application Window and Dashboard Widget
 
 **REQUEST_CHANGES** — The implementation provides the main window and dashboard widget, but the Dashboard Widget does not display the total monthly spending and category breakdown as required. The dashboard_widget.py file is missing, and the main_window.py file is not provided in the changed files, so the acceptance criteria for dashboard display and navigation arrows cannot be verified.
+
+### Cycle 3 — #3: Create Transaction Form Widget for Manual Entry
+
+**REQUEST_CHANGES** — The Transaction Form Widget implements the required fields and validation, but it does not meet the acceptance criteria for clearing the form after submission. The form clears all fields except the date, which is reset to today's date, but the acceptance criteria require the form to be cleared, which implies resetting all fields to their default state. Additionally, the date validation uses a try-except block that catches all exceptions, which is too broad and may hide specific errors.
