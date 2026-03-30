@@ -61,3 +61,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 6 — #7: Dashboard Widget missing implementation
 
 **REQUEST_CHANGES** — The Dashboard Widget implementation meets most acceptance criteria but has a critical bug: the 'Net Spent' calculation incorrectly subtracts refunds from total spent, which may not align with user expectations for net spending. Additionally, the widget does not subscribe to data changes for real-time updates, violating the acceptance criteria.
+
+### Cycle 7 — #8: Main Window implementation not provided
+
+**APPROVE** — The main_window.py file implements the Main Application Window with all required functionality. It initializes the UI with a transaction form and dashboard, applies the dark theme stylesheet, and handles navigation signals. The implementation meets the acceptance criteria of launching with the dark theme applied.
