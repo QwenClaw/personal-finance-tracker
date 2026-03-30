@@ -46,6 +46,11 @@ class MainWindow(QMainWindow):
         
         # Connect form submission to refresh dashboard
         self.transaction_form.submit_button.clicked.connect(self.refresh_dashboard)
+        
+        # Add CSV import button
+        self.csv_import_button = QPushButton("Import CSV")
+        self.csv_import_button.clicked.connect(self.import_csv)
+        main_layout.addWidget(self.csv_import_button)
     
     def apply_dark_theme(self):
         """Apply dark theme stylesheet to the application."""

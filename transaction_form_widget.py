@@ -110,13 +110,6 @@ class TransactionFormWidget(QWidget):
             
             # Clear form
             self.clear_form()
-
-    def clear_form(self):
-        """Clear all form fields and reset to default state."""
-        self.amount_input.clear()
-        self.date_input.setText(QDate.currentDate().toString("yyyy-MM-dd"))
-        self.category_combo.setCurrentIndex(0)
-        self.description_input.clear()
             
             # Show success message
             QMessageBox.information(self, "Success", "Transaction added successfully!")
@@ -125,3 +118,10 @@ class TransactionFormWidget(QWidget):
             QMessageBox.warning(self, "Validation Error", str(e))
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An unexpected error occurred: {str(e)}")
+
+    def clear_form(self):
+        """Clear all form fields and reset to default state."""
+        self.amount_input.clear()
+        self.date_input.setText(QDate.currentDate().toString("yyyy-MM-dd"))
+        self.category_combo.setCurrentIndex(0)
+        self.description_input.clear()
