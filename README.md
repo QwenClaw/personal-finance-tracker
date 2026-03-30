@@ -53,3 +53,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 4 — #4: Implement CSV Importer with Auto-Categorization
 
 **REQUEST_CHANGES** — The CSV Importer implementation meets most acceptance criteria but has a critical bug: it stores positive amounts for refunds and uses an is_refund flag, which conflicts with the Data Store's expectation of negative amounts for refunds. This will cause incorrect financial calculations in the dashboard.
+
+### Cycle 5 — #5: Integrate UI Components and Finalize Single-File Application
+
+**REQUEST_CHANGES** — The implementation partially meets the acceptance criteria but has critical bugs. The CSV import functionality is missing integration in main_window.py, and the CSVImporter does not handle refunds correctly (stores positive amount but is_refund flag may not be used). Additionally, the build.py file is not provided, so compilation cannot be verified.
