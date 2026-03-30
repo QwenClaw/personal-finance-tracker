@@ -76,11 +76,19 @@ class TransactionFormWidget(QWidget):
             date_str = self.date_input.text().strip()
             if not date_str:
                 raise ValueError("Date is required")
-            try:
-                # Validate date format
-                QDate.fromString(date_str, "yyyy-MM-dd")
-            except:
+            
+            # Validate date format with regex
+            import re
+            from datetime import datetime
+            date_pattern = r"^\d{4}-\d{2}-\d{2}$"
+            if not re.match(date_pattern, date_str):
                 raise ValueError("Date must be in YYYY-MM-DD format")
+            
+            # Validate date is a real calendar date
+            try:
+                datetime.strptime(date_str, "%Y-%m-%d")
+            except ValueError:
+                raise ValueError("Date must be a valid calendar date")
             
             # Get category
             category = self.category_combo.currentText()
