@@ -11,6 +11,7 @@ class Transaction:
     date: str  # YYYY-MM-DD format
     category: str
     description: str
+    is_refund: bool = False
 
     def __post_init__(self):
         # Validate amount
