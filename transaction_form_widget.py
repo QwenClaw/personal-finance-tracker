@@ -113,7 +113,7 @@ class TransactionFormWidget(QWidget):
             
             # Show success message
             QMessageBox.information(self, "Success", "Transaction added successfully!")
-            
+        
         except ValueError as e:
             QMessageBox.warning(self, "Validation Error", str(e))
         except Exception as e:
