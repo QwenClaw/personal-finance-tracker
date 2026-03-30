@@ -73,3 +73,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 9 — #11: Improve date validation in Transaction Form Widget
 
 **REQUEST_CHANGES** — The implementation adds specific date format and validity checks, meeting the acceptance criteria. However, the code has a critical bug: the success message and form clearing are incorrectly indented, causing them to execute only if an exception occurs, not on success. This breaks the normal flow.
+
+### Cycle 10 — #13: Fix refund amount handling in CSV Importer
+
+**APPROVE** — The implementation meets all acceptance criteria: refunds are stored as negative amounts in the Data Store, the is_refund flag has been removed from CSV Importer, and the Transaction model no longer includes the is_refund field. The changes align with the expected data flow and financial calculations.
