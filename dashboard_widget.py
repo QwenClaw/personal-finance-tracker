@@ -88,14 +88,14 @@ class DashboardWidget(QWidget):
         transactions = self.data_store.get_transactions_by_month(self.current_year, self.current_month)
         
         # Calculate totals
-        total_spent = sum(t.amount for t in transactions if not t.is_refund)
-        total_refunds = sum(t.amount for t in transactions if t.is_refund)
+        total_spent = sum(t.amount for t in transactions if t.amount > 0)
+        total_refunds = sum(-t.amount for t in transactions if t.amount < 0)
         net_spent = total_spent - total_refunds
         
         # Category breakdown
         category_totals = defaultdict(float)
         for t in transactions:
-            if not t.is_refund:
+            if t.amount > 0:
                 category_totals[t.category] += t.amount
         
         # Display totals

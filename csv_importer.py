@@ -79,11 +79,10 @@ class CSVImporter:
                         # Create transaction
                         transaction = Transaction(
                             id=str(uuid.uuid4()),
-                            amount=abs(amount),  # Store positive amount, use is_refund flag
+                            amount=amount,  # Store amount as-is (negative for refunds)
                             date=date,
                             category=category,
-                            description=description,
-                            is_refund=is_refund
+                            description=description
                         )
                         
                         transactions.append(transaction)

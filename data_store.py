@@ -38,8 +38,7 @@ class DataStore:
                     "amount": t.amount,
                     "date": t.date,
                     "category": t.category,
-                    "description": t.description,
-                    "is_refund": t.is_refund
+                    "description": t.description
                 } for t in self.transactions
             ]
         }
