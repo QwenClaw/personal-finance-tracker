@@ -85,3 +85,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 12 — #15: Fix CSVImporter refund handling and add build.py script
 
 **REQUEST_CHANGES** — The CSVImporter correctly handles refunds by storing positive amounts and setting is_refund flag, but the Transaction model validation rejects negative amounts which may be needed for certain CSV formats. The build.py script is present but does not enforce the 20MB size limit or verify the executable size after compilation.
+
+### Cycle 13 — #20: Fix indentation and form clearing logic in TransactionFormWidget
+
+**APPROVE** — The implementation correctly fixes the indentation issue by placing the clear_form call inside the try block after successful transaction addition. The clear_form method properly resets all fields including the date to today's date, and the success message is displayed as required. All acceptance criteria are met.
