@@ -97,3 +97,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 15 — #25: Implement CSV import functionality in MainWindow
 
 **APPROVE** — The implementation of the `import_csv()` method in MainWindow meets all acceptance criteria: it opens a file dialog, calls CSVImporter, adds transactions to Data Store, and refreshes the dashboard. The code handles user cancellation, empty imports, and errors appropriately.
+
+### Cycle 16 — #27: Transaction model should allow negative amounts for refunds
+
+**REQUEST_CHANGES** — The Transaction model's validation still rejects negative amounts because it only checks for zero, but the acceptance criteria require allowing negative amounts. The CSVImporter's refund handling is not reviewed in the changed file, but the model change is incomplete.
