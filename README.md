@@ -89,3 +89,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 13 — #20: Fix indentation and form clearing logic in TransactionFormWidget
 
 **APPROVE** — The implementation correctly fixes the indentation issue by placing the clear_form call inside the try block after successful transaction addition. The clear_form method properly resets all fields including the date to today's date, and the success message is displayed as required. All acceptance criteria are met.
+
+### Cycle 14 — #22: Fix indentation in add_transaction method
+
+**APPROVE** — The code change correctly fixes the indentation issue in the add_transaction method. The clear_form() call and success message are now properly placed outside the try block, ensuring they execute only on successful transaction addition. The acceptance criteria are fully met: form clears and shows success message on success, and no success message appears on validation failure.
