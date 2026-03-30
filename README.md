@@ -77,3 +77,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 10 — #13: Fix refund amount handling in CSV Importer
 
 **APPROVE** — The implementation meets all acceptance criteria: refunds are stored as negative amounts in the Data Store, the is_refund flag has been removed from CSV Importer, and the Transaction model no longer includes the is_refund field. The changes align with the expected data flow and financial calculations.
+
+### Cycle 11 — #14: Integrate CSV import button and functionality in main_window.py
+
+**REQUEST_CHANGES** — The CSV import button was added to the main window, but the implementation does not meet the acceptance criteria because the button's click handler calls a non-existent method `import_csv()` and does not trigger the CSVImporter, add transactions to the Data Store, or update the dashboard. The `import_csv` method is missing from the MainWindow class.
