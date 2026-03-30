@@ -41,3 +41,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 1 — #1: Implement Data Store and Transaction Model
 
 **APPROVE** — The implementation meets all acceptance criteria: Data Store class is implemented with required methods, Transaction dataclass includes all fields and validation, JSON path is configurable with default, and auto-save triggers on add_transaction. No critical bugs or missing functionality found.
+
+### Cycle 2 — #2: Build Main Application Window and Dashboard Widget
+
+**REQUEST_CHANGES** — The implementation provides the main window and dashboard widget, but the Dashboard Widget does not display the total monthly spending and category breakdown as required. The dashboard_widget.py file is missing, and the main_window.py file is not provided in the changed files, so the acceptance criteria for dashboard display and navigation arrows cannot be verified.
