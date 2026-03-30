@@ -69,3 +69,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 8 — #10: Fix form clearing logic in Transaction Form Widget
 
 **REQUEST_CHANGES** — The implementation partially meets the acceptance criteria by clearing the amount and description fields and resetting the category dropdown, but the date field reset logic is incorrectly placed outside the try block in the clear_form method, causing a potential indentation error and preventing the success message from displaying. Additionally, the form clearing is not explicitly called after a successful transaction submission in the current code structure.
+
+### Cycle 9 — #11: Improve date validation in Transaction Form Widget
+
+**REQUEST_CHANGES** — The implementation adds specific date format and validity checks, meeting the acceptance criteria. However, the code has a critical bug: the success message and form clearing are incorrectly indented, causing them to execute only if an exception occurs, not on success. This breaks the normal flow.
