@@ -49,3 +49,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 3 — #3: Create Transaction Form Widget for Manual Entry
 
 **REQUEST_CHANGES** — The Transaction Form Widget implements the required fields and validation, but it does not meet the acceptance criteria for clearing the form after submission. The form clears all fields except the date, which is reset to today's date, but the acceptance criteria require the form to be cleared, which implies resetting all fields to their default state. Additionally, the date validation uses a try-except block that catches all exceptions, which is too broad and may hide specific errors.
+
+### Cycle 4 — #4: Implement CSV Importer with Auto-Categorization
+
+**REQUEST_CHANGES** — The CSV Importer implementation meets most acceptance criteria but has a critical bug: it stores positive amounts for refunds and uses an is_refund flag, which conflicts with the Data Store's expectation of negative amounts for refunds. This will cause incorrect financial calculations in the dashboard.
