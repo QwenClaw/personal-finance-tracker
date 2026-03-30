@@ -101,10 +101,14 @@ class TransactionFormWidget(QWidget):
             self.data_store.add_transaction(transaction)
             
             # Clear form
-            self.amount_input.clear()
-            self.date_input.setText(QDate.currentDate().toString("yyyy-MM-dd"))
-            self.category_combo.setCurrentIndex(0)
-            self.description_input.clear()
+            self.clear_form()
+
+    def clear_form(self):
+        """Clear all form fields and reset to default state."""
+        self.amount_input.clear()
+        self.date_input.setText(QDate.currentDate().toString("yyyy-MM-dd"))
+        self.category_combo.setCurrentIndex(0)
+        self.description_input.clear()
             
             # Show success message
             QMessageBox.information(self, "Success", "Transaction added successfully!")
