@@ -57,3 +57,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 5 — #5: Integrate UI Components and Finalize Single-File Application
 
 **REQUEST_CHANGES** — The implementation partially meets the acceptance criteria but has critical bugs. The CSV import functionality is missing integration in main_window.py, and the CSVImporter does not handle refunds correctly (stores positive amount but is_refund flag may not be used). Additionally, the build.py file is not provided, so compilation cannot be verified.
+
+### Cycle 6 — #7: Dashboard Widget missing implementation
+
+**REQUEST_CHANGES** — The Dashboard Widget implementation meets most acceptance criteria but has a critical bug: the 'Net Spent' calculation incorrectly subtracts refunds from total spent, which may not align with user expectations for net spending. Additionally, the widget does not subscribe to data changes for real-time updates, violating the acceptance criteria.
