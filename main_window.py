@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QFrame
+from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QFrame, QPushButton, QFileDialog, QMessageBox
 from PySide6.QtCore import Qt
 from dashboard_widget import DashboardWidget
 from transaction_form_widget import TransactionFormWidget
@@ -108,3 +108,35 @@ class MainWindow(QMainWindow):
     def refresh_dashboard(self):
         """Refresh the dashboard display."""
         self.dashboard.refresh()
+
+    def import_csv(self):
+        """Open file dialog to select CSV file, import transactions, and refresh dashboard."""
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Import CSV",
+            "",
+            "CSV Files (*.csv);;All Files (*)"
+        )
+        
+        if not file_path:
+            return  # User cancelled
+        
+        try:
+            csv_importer = CSVImporter()
+            transactions = csv_importer.import_csv(file_path)
+            
+            if not transactions:
+                QMessageBox.information(self, "Import", "No transactions found in CSV file.")
+                return
+            
+            # Add transactions to data store
+            for transaction in transactions:
+                self.data_store.add_transaction(transaction)
+            
+            # Refresh dashboard
+            self.refresh_dashboard()
+            
+            QMessageBox.information(self, "Import Success", f"Imported {len(transactions)} transactions.")
+        
+        except Exception as e:
+            QMessageBox.critical(self, "Import Error", f"Failed to import CSV: {str(e)}")
