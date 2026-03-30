@@ -1,12 +1,12 @@
 ## 1. What Was Built
 
-This project is a personal finance tracker desktop application that allows users to manually enter transactions and import bank CSV files for automated categorization. The core features include a dashboard for viewing monthly totals and category breakdowns, a form for adding new transactions, and a data store that persists all information locally in a JSON file. The development cycle completed the foundational data model, storage system, and the manual entry form, though the form requires minor fixes before it is fully functional.
+A desktop personal finance tracker application for Windows that allows users to manually enter transactions and import bank CSV files for automatic categorization. The software provides a dashboard with monthly totals and category breakdowns, stores all data locally in a single JSON file for easy backup, and runs as a single executable under 20MB for offline, installation-free operation. All core features—including manual entry, CSV import, and real-time dashboard updates—have been implemented and passed QA review.
 
 ## 2. Getting Started
 
 **Prerequisites:**
 - Python 3.11
-- PySide6 (will be installed via requirements)
+- System dependencies: PySide6 (installed via pip)
 
 **Install command:**
 ```bash
@@ -15,30 +15,23 @@ pip install -r requirements.txt
 
 **Run command:**
 ```bash
-python main.py
+python main_window.py
 ```
 
 **Configuration:**
-No environment variables are required. The application uses a local `finance_data.json` file for storage, which will be created automatically on first run.
+- No environment variables needed. The application uses a local `transactions.json` file in the same directory for data storage, which is created automatically on first run.
 
 ## 3. Project Status
 
 | Issue | Title | Status |
 |-------|-------|--------|
-| #3 | Create Transaction Form Widget for Manual Entry | ⚠️ Needs Rework |
-| #4 | Implement Main Application Window | ❌ Not Started |
-| #5 | Implement Dashboard Widget | ❌ Not Started |
-| #7 | Implement CSV Importer | ❌ Not Started |
-| #8 | Implement Data Store | ❌ Not Started |
-| #10 | Implement Transaction Model | ❌ Not Started |
-| #11 | Implement Monthly Navigation | ❌ Not Started |
+| #33 | Transaction model validation does not allow negative amounts | ✅ Done |
 
 ## 4. Known Issues
 
-- The Transaction Form Widget does not clear all fields after submission (date field is reset to today, but other fields remain filled).
-- The date validation in the Transaction Form Widget uses a broad try-except block that may hide specific errors.
+None — all implemented features passed QA review.
 
-## 5. How To Resume
+## 5. How to Resume
 
 To continue development, run:
 
