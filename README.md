@@ -93,3 +93,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 14 — #22: Fix indentation in add_transaction method
 
 **APPROVE** — The code change correctly fixes the indentation issue in the add_transaction method. The clear_form() call and success message are now properly placed outside the try block, ensuring they execute only on successful transaction addition. The acceptance criteria are fully met: form clears and shows success message on success, and no success message appears on validation failure.
+
+### Cycle 15 — #25: Implement CSV import functionality in MainWindow
+
+**APPROVE** — The implementation of the `import_csv()` method in MainWindow meets all acceptance criteria: it opens a file dialog, calls CSVImporter, adds transactions to Data Store, and refreshes the dashboard. The code handles user cancellation, empty imports, and errors appropriately.
