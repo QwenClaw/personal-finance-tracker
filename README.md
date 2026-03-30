@@ -81,3 +81,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 11 — #14: Integrate CSV import button and functionality in main_window.py
 
 **REQUEST_CHANGES** — The CSV import button was added to the main window, but the implementation does not meet the acceptance criteria because the button's click handler calls a non-existent method `import_csv()` and does not trigger the CSVImporter, add transactions to the Data Store, or update the dashboard. The `import_csv` method is missing from the MainWindow class.
+
+### Cycle 12 — #15: Fix CSVImporter refund handling and add build.py script
+
+**REQUEST_CHANGES** — The CSVImporter correctly handles refunds by storing positive amounts and setting is_refund flag, but the Transaction model validation rejects negative amounts which may be needed for certain CSV formats. The build.py script is present but does not enforce the 20MB size limit or verify the executable size after compilation.
