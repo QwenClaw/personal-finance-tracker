@@ -19,4 +19,19 @@ args = [
 # Run PyInstaller
 PyInstaller.__main__.run(args)
 
-print("Build complete. Executable should be in the 'dist' folder.")
+# Verify executable exists and check size
+executable_name = "PersonalFinanceManager.exe"
+executable_path = os.path.join("dist", executable_name)
+
+if not os.path.exists(executable_path):
+    raise FileNotFoundError(f"Executable not found at {executable_path}")
+
+size_bytes = os.path.getsize(executable_path)
+size_mb = size_bytes / (1024 * 1024)
+
+print(f"Build complete. Executable size: {size_mb:.2f} MB")
+
+if size_mb > 20:
+    raise Exception(f"Executable size ({size_mb:.2f} MB) exceeds 20MB limit")
+
+print(f"Executable verified at {executable_path}")
