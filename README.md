@@ -105,3 +105,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 17 — #28: Build script should enforce 20MB size limit and verify output
 
 **APPROVE** — The build script correctly implements all acceptance criteria: it checks for the executable's existence, verifies its size, and fails if it exceeds 20MB. The script also prints appropriate status messages for verification.
+
+### Cycle 18 — #33: Transaction model validation does not allow negative amounts
+
+**APPROVE** — The updated Transaction model correctly allows negative amounts while still rejecting zero amounts, meeting both acceptance criteria. The validation logic in __post_init__ now explicitly permits negative values and maintains the zero amount check. No critical bugs or missing criteria were found in the implementation.
