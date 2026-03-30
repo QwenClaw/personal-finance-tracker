@@ -101,3 +101,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 16 — #27: Transaction model should allow negative amounts for refunds
 
 **REQUEST_CHANGES** — The Transaction model's validation still rejects negative amounts because it only checks for zero, but the acceptance criteria require allowing negative amounts. The CSVImporter's refund handling is not reviewed in the changed file, but the model change is incomplete.
+
+### Cycle 17 — #28: Build script should enforce 20MB size limit and verify output
+
+**APPROVE** — The build script correctly implements all acceptance criteria: it checks for the executable's existence, verifies its size, and fails if it exceeds 20MB. The script also prints appropriate status messages for verification.
