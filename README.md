@@ -65,3 +65,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 7 — #8: Main Window implementation not provided
 
 **APPROVE** — The main_window.py file implements the Main Application Window with all required functionality. It initializes the UI with a transaction form and dashboard, applies the dark theme stylesheet, and handles navigation signals. The implementation meets the acceptance criteria of launching with the dark theme applied.
+
+### Cycle 8 — #10: Fix form clearing logic in Transaction Form Widget
+
+**REQUEST_CHANGES** — The implementation partially meets the acceptance criteria by clearing the amount and description fields and resetting the category dropdown, but the date field reset logic is incorrectly placed outside the try block in the clear_form method, causing a potential indentation error and preventing the success message from displaying. Additionally, the form clearing is not explicitly called after a successful transaction submission in the current code structure.
