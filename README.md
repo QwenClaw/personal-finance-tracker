@@ -559,3 +559,49 @@ The implementation does not meet all acceptance criteria. The DataStore class st
 ### Cycle 58 — #101: Add unit tests for DataStore singleton pattern
 
 **REJECT** — The issue requires adding unit tests for the DataStore singleton pattern, but no test files were provided in the changed files. The acceptance criteria specify testing singleton behavior, QObject compatibility, and signal emission, yet no tests exist to verify these. This violates the decision rule that requires tests when new logic is implemented.
+
+### Cycle 59 — #102: Fix runtime crash detected by QA sandbox
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+FFFFF                                                                    [100%]
+================================== FAILURES ===================================
+_____________________ TestDataStore.test_add_transaction ______________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+data_store.py:22: in __init__
+    super().__init__(self)  # Pass self to QObject.__init__
+    ^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: libshiboken: '__init__' method of object's base class (DataStore) not called.
+________________ TestDataStore.test_get_transactions_by_month _________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+data_store.py:22: in __init__
+    super().__init__(self)  # Pass self to QObject.__init__
+    ^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: libshiboken: '__init__' method of object's base class (DataStore) not called.
+______________________ TestDataStore.test_save_and_load _______________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+data_store.py:22: in __init__
+    super().__init__(self)  # Pass self to QObject.__init__
+    ^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: libshiboken: '__init__' method of object's base class (DataStore) not called.
+_____________________ TestDataStore.test_signal_emission ______________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+data_store.py:22: in __init__
+    super().__init__(self)  # Pass self to QObject.__init__
+    ^^^^^^^^^^^^^^^^^^^^^^
+E   RuntimeError: libshiboken: '__init__' method of object's base class (DataStore) not called.
+____________________ TestDataStore.test_singleton_behavior ____________________
+tests\test_data_store.py:16: in setUp
+    self.data_
+```
+
+The implementation fails the singleton test because the __init__ method is called multiple times, reinitializing the instance and breaking the singleton pattern. The __new__ method correctly returns the singleton instance, but __init__ runs on every instantiation, resetting the json_path and transactions list. This causes the test to see different object references.
