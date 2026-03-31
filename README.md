@@ -671,3 +671,23 @@ FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_pa
 ```
 
 The implementation fails the singleton test because the `__new__` method returns a new instance when `json_path` differs, breaking the singleton guarantee. The `__init__` method also incorrectly reinitializes the instance when a different path is provided, which can cause data loss or inconsistent state.
+
+### Cycle 64 — #108: Create unit tests for DataStore class
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+......F                                                                  [100%]
+================================== FAILURES ===================================
+______________ TestDataStore.test_singleton_different_json_paths ______________
+tests\test_data_store.py:44: in test_singleton_different_json_paths
+    self.assertEqual(ds1.json_path, "path1.json")
+E   AssertionError: 'test_transactions.json' != 'path1.json'
+E   - test_transactions.json
+E   + path1.json
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_paths
+1 failed, 6 passed in 0.24s
+```
+
+The implementation does not include any unit tests for the DataStore class, which is required by the acceptance criteria. The changed file only contains the DataStore class itself, with no test file added. This violates the requirement to write comprehensive unit tests.
