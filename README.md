@@ -419,3 +419,21 @@ FAILED tests/test_data_store.py::TestDataStore::test_singleton_behavior - Ass...
 ```
 
 The implementation does not meet all acceptance criteria. The DataStore class still uses a singleton pattern that may cause issues with QObject compatibility, as it returns early in __init__ without calling super().__init__() for the existing instance. Additionally, there are no tests provided for the new singleton logic, which is required for non-trivial changes.
+
+### Cycle 50 — #90: Add unit tests for DataStore singleton pattern and QObject compatibility
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+....F                                                                    [100%]
+================================== FAILURES ===================================
+____________________ TestDataStore.test_singleton_behavior ____________________
+tests\test_data_store.py:25: in test_singleton_behavior
+    self.assertIs(ds1, ds2)
+E   AssertionError: <data_store.DataStore object at 0x000002D7FE3AF740> is not <data_store.DataStore object at 0x000002D7FE3AF780>
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_behavior - Ass...
+1 failed, 4 passed in 0.33s
+```
+
+The implementation adds a new unit test file for DataStore, but the acceptance criteria require tests for singleton behavior, QObject compatibility, and signal emission. The provided changed files do not include any test files, meaning the acceptance criteria are not met. Additionally, the DataStore singleton pattern has a critical bug: the __init__ method returns early if an instance exists, but it does not return the existing instance, causing multiple instantiations to create separate objects that do not share state.
