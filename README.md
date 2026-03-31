@@ -121,3 +121,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 21 — #37: Missing requirements.txt file
 
 **APPROVE** — The requirements.txt file has been created in the project root directory with the necessary dependencies (PySide6 and PyInstaller). The file format is correct and should allow 'pip install -r requirements.txt' to work without errors, meeting all acceptance criteria.
+
+### Cycle 22 — #38: CSV importer refund handling inconsistency
+
+**REQUEST_CHANGES** — The CSV importer correctly stores refunds as positive amounts with is_refund=True, but the Transaction model's validation logic is not shown in the changed files. The acceptance criteria require ensuring the Transaction model allows negative amounts for refunds, which cannot be verified without reviewing the Transaction model code. Additionally, the CSV importer's _generate_id function uses abs(amount), which may cause deduplication issues for refund transactions if the original transaction was already imported.
