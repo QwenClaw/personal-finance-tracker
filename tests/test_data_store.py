@@ -12,7 +12,9 @@ from PySide6.QtCore import QObject
 
 class TestDataStore(unittest.TestCase):
     def setUp(self):
-        DataStore._instance = None
+        # Only reset singleton if not already set for this test class
+        if not hasattr(DataStore, '_instance') or DataStore._instance is None:
+            DataStore._instance = None
         self.json_path = "test_transactions.json"
         self.data_store = DataStore(self.json_path)
 
