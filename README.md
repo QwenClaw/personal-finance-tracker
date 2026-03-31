@@ -209,3 +209,50 @@ _Development log will be appended as issues are completed._
 ### Cycle 43 — #80: Fix DataStore singleton pattern for QObject compatibility
 
 **REJECT** — The implementation does not meet all acceptance criteria. The DataStore's __new__ method still calls super().__new__(cls) directly, which can cause TypeError with QObject subclasses. Additionally, the singleton pattern is not properly enforced across multiple instantiations with different json_path arguments, and no tests were provided to verify the singleton behavior or QObject compatibility.
+
+### Cycle 44 — #81: Add unit tests for DataStore singleton and signal functionality
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+FFFFF                                                                    [100%]
+================================== FAILURES ===================================
+_____________________ TestDataStore.test_add_transaction ______________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+data_store.py:16: in __new__
+    cls._instance = object.__new__(cls)
+                    ^^^^^^^^^^^^^^^^^^^
+E   TypeError: object.__new__(DataStore) is not safe, use PySide6.QtCore.QObject.__new__()
+________________ TestDataStore.test_get_transactions_by_month _________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+data_store.py:16: in __new__
+    cls._instance = object.__new__(cls)
+                    ^^^^^^^^^^^^^^^^^^^
+E   TypeError: object.__new__(DataStore) is not safe, use PySide6.QtCore.QObject.__new__()
+______________________ TestDataStore.test_save_and_load _______________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+data_store.py:16: in __new__
+    cls._instance = object.__new__(cls)
+                    ^^^^^^^^^^^^^^^^^^^
+E   TypeError: object.__new__(DataStore) is not safe, use PySide6.QtCore.QObject.__new__()
+_____________________ TestDataStore.test_signal_emission ______________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+data_store.py:16: in __new__
+    cls._instance = object.__new__(cls)
+                    ^^^^^^^^^^^^^^^^^^^
+E   TypeError: object.__new__(DataStore) is not safe, use PySide6.QtCore.QObject.__new__()
+____________________ TestDataStore.test_singleton_behavior ____________________
+tests\test_data_store.py:16: in setUp
+    self.data_store = DataStore(self.json_path)
+                  
+```
+
+The implementation does not include any unit tests for the DataStore class, which is a requirement of the acceptance criteria. The changed file only contains the DataStore implementation, but no test file was added or modified to verify singleton behavior, signal emission, or method correctness.
