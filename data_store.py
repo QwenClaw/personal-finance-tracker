@@ -22,9 +22,6 @@ class DataStore(QObject):
             super().__init__()  # Correct QObject initialization
             self.json_path = json_path
             self.transactions = []
-        # If json_path is provided and different from existing, update it
-        elif json_path != self.json_path:
-            self.json_path = json_path
     
     def _emit_data_changed(self) -> None:
         """Emit data changed signal."""
