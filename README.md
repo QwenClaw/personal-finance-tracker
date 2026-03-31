@@ -117,3 +117,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 20 — #17: Fix Net Spent calculation and add data change subscription
 
 **REQUEST_CHANGES** — The implementation partially meets the acceptance criteria but has a critical bug in the net spent calculation. The current logic subtracts refunds (negative amounts) from total spent, which incorrectly inflates net spent. Additionally, the Dashboard Widget does not subscribe to data changes for real-time updates, though the code shows a connection to data_changed signal in __init__, which is correct. The navigation arrows are functional.
+
+### Cycle 21 — #37: Missing requirements.txt file
+
+**APPROVE** — The requirements.txt file has been created in the project root directory with the necessary dependencies (PySide6 and PyInstaller). The file format is correct and should allow 'pip install -r requirements.txt' to work without errors, meeting all acceptance criteria.
