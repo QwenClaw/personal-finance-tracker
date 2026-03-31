@@ -21,9 +21,10 @@ class CSVImporter:
     def __init__(self):
         self.seen_transactions: Set[str] = set()
     
-    def _generate_id(self, date: str, amount: float, description: str) -> str:
+    def _generate_id(self, date: str, amount: float, description: str, is_refund: bool = False) -> str:
         """Generate a unique ID based on transaction details for deduplication."""
-        return f"{date}_{abs(amount)}_{description}"
+        refund_flag = "refund" if is_refund else "original"
+        return f"{date}_{abs(amount)}_{description}_{refund_flag}"
     
     def _categorize(self, description: str) -> str:
         """Auto-categorize transaction based on keywords in description."""
@@ -65,7 +66,7 @@ class CSVImporter:
                         description = row['description'].strip()
                         
                         # Generate unique ID for deduplication
-                        transaction_id = self._generate_id(date, amount, description)
+                        transaction_id = self._generate_id(date, amount, description, is_refund)
                         
                         # Skip if already seen
                         if transaction_id in self.seen_transactions:
