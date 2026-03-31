@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import (QWidget, QLabel, QLineEdit, QComboBox, QPushButton,
-                             QVBoxLayout, QHBoxLayout, QMessageBox)
+                             QVBoxLayout, QHBoxLayout, QMessageBox, QCheckBox)
 from PySide6.QtCore import QDate
 from transaction_model import Transaction
 from data_store import DataStore
@@ -51,6 +51,13 @@ class TransactionFormWidget(QWidget):
         desc_layout.addWidget(self.description_input)
         layout.addLayout(desc_layout)
         
+        # Refund checkbox
+        refund_layout = QHBoxLayout()
+        self.refund_checkbox = QCheckBox("Mark as Refund")
+        refund_layout.addWidget(self.refund_checkbox)
+        refund_layout.addStretch()
+        layout.addLayout(refund_layout)
+        
         # Submit button
         self.submit_button = QPushButton("Add Transaction")
         self.submit_button.clicked.connect(self.add_transaction)
@@ -69,8 +76,19 @@ class TransactionFormWidget(QWidget):
                 amount = float(amount_str)
             except ValueError:
                 raise ValueError("Amount must be a number")
-            # Allow negative amounts for refunds (manual entry)
-            # The user can enter a negative amount to indicate a refund
+            
+            # Check refund status
+            is_refund = self.refund_checkbox.isChecked()
+            
+            # Validate amount based on refund status
+            if is_refund:
+                # For refunds, amount should be positive (stored as positive with is_refund=True)
+                if amount <= 0:
+                    raise ValueError("Refund amount must be positive")
+            else:
+                # For non-refunds, amount should be positive
+                if amount <= 0:
+                    raise ValueError("Amount must be positive for non-refund transactions")
             
             # Get and validate date
             date_str = self.date_input.text().strip()
@@ -102,7 +120,8 @@ class TransactionFormWidget(QWidget):
                 amount=amount,
                 date=date_str,
                 category=category,
-                description=description
+                description=description,
+                is_refund=is_refund
             )
             
             # Add to data store
@@ -125,3 +144,4 @@ class TransactionFormWidget(QWidget):
         self.date_input.setText(QDate.currentDate().toString("yyyy-MM-dd"))
         self.category_combo.setCurrentIndex(0)
         self.description_input.clear()
+        self.refund_checkbox.setChecked(False)
