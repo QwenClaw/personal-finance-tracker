@@ -19,7 +19,7 @@ class Transaction:
             raise ValueError("Amount must be a number")
         if self.amount == 0:
             raise ValueError("Amount cannot be zero")
-        # Negative amounts are allowed for refunds
+        # Negative amounts are allowed for refunds (is_refund flag)
         
         # Validate date format
         try:
