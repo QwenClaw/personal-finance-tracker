@@ -129,3 +129,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 23 — #40: Correct net spent calculation in DashboardWidget
 
 **REQUEST_CHANGES** — The net_spent calculation in load_data() is incorrect: it adds total_refunds (which are already positive values from summing -amount) to total_spent, effectively double-counting refunds. This violates the acceptance criteria for accurate net spent calculation. The category breakdown also excludes refunds, which may affect display accuracy.
+
+### Cycle 24 — #43: Review Transaction model validation for refund handling
+
+**REQUEST_CHANGES** — The Transaction model validation in transaction_model.py correctly allows negative amounts for refunds, but the transaction_form_widget.py does not provide a way to set is_refund=True for manual entries. The form only allows negative amounts but does not mark them as refunds, which may cause inconsistency with CSV import behavior where refunds are stored as positive amounts with is_refund=True.
