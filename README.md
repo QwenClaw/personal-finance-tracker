@@ -845,3 +845,33 @@ FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_pa
 ```
 
 The test file covers all acceptance criteria: singleton behavior with same and different json_paths, no TypeError on instantiation, and signal emission on transaction addition. The tests are well-structured and use appropriate mocking and assertions. No critical bugs or missing criteria were found.
+
+### Cycle 72 — #119: Fix runtime crash detected by QA sandbox
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+.F.F..F                                                                  [100%]
+================================== FAILURES ===================================
+________________ TestDataStore.test_get_transactions_by_month _________________
+tests\test_data_store.py:70: in test_get_transactions_by_month
+    self.assertEqual(len(jan), 1)
+E   AssertionError: 2 != 1
+______________________ TestDataStore.test_save_and_load _______________________
+tests\test_data_store.py:79: in test_save_and_load
+    self.assertEqual(len(new_store.transactions), 1)
+E   AssertionError: 4 != 1
+______________ TestDataStore.test_singleton_different_json_paths ______________
+tests\test_data_store.py:46: in test_singleton_different_json_paths
+    self.assertEqual(ds1.json_path, "path1.json")
+E   AssertionError: 'test_transactions.json' != 'path1.json'
+E   - test_transactions.json
+E   + path1.json
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_get_transactions_by_month
+FAILED tests/test_data_store.py::TestDataStore::test_save_and_load - Assertio...
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_paths
+3 failed, 4 passed in 0.26s
+```
+
+The implementation fails two acceptance criteria: test_get_transactions_by_month expects 1 transaction but finds 2, and test_save_and_load expects 1 transaction but finds 4. This indicates the DataStore is not properly isolated between tests, likely due to the singleton pattern persisting state across test runs. The singleton pattern is causing test pollution.
