@@ -20,6 +20,7 @@ class DashboardWidget(QWidget):
         self.current_month = QDate.currentDate().month()
         self.init_ui()
         self.load_data()
+        self.data_store.data_changed.connect(self.refresh)
     
     def init_ui(self):
         layout = QVBoxLayout()
