@@ -1,10 +1,11 @@
-from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QFrame, QPushButton, QFileDialog, QMessageBox
+from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QFrame, QPushButton, QFileDialog, QMessageBox, QApplication
 from PySide6.QtCore import Qt
 from dashboard_widget import DashboardWidget
 from transaction_form_widget import TransactionFormWidget
 from csv_importer import CSVImporter
 from data_store import DataStore
 import os
+import sys
 
 
 class MainWindow(QMainWindow):
@@ -140,3 +141,10 @@ class MainWindow(QMainWindow):
         
         except Exception as e:
             QMessageBox.critical(self, "Import Error", f"Failed to import CSV: {str(e)}")
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
