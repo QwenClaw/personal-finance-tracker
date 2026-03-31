@@ -169,3 +169,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 33 — #59: Remove or fix non-existent icon reference in build.py
 
 **APPROVE** — The build.py file has been reviewed and meets the acceptance criteria. It no longer references a non-existent icon.ico file, and the build process will complete without file-not-found errors related to the icon. The script correctly includes the necessary data file and verifies the executable size.
+
+### Cycle 34 — #62: Error when getting error.
+
+**REQUEST_CHANGES** — The implementation does not meet the acceptance criteria due to a critical bug: the DataStore singleton pattern incorrectly inherits from QObject, causing a RuntimeError when instantiated multiple times. The error trace shows the DataStore is being initialized twice, which violates the singleton pattern and prevents the application from launching.
