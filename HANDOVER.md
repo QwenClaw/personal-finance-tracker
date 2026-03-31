@@ -1,12 +1,12 @@
 ## 1. What Was Built
 
-A desktop personal finance tracker that lets you manually enter transactions or import them from a bank CSV file. The application displays a dashboard with monthly totals and category breakdowns, and automatically saves all data to a local JSON file. All core features—including manual entry, CSV import, and real-time dashboard updates—have been implemented and approved.
+This project is a personal finance tracker desktop application for Windows. It allows users to manually enter transactions, import bank CSV files with automatic categorization, and view a dashboard with monthly totals and category breakdowns. The application stores all data locally in a JSON file and runs offline without installation. The core features—manual entry, CSV import, and dashboard navigation—were completed and approved in previous cycles.
 
 ## 2. Getting Started
 
 **Prerequisites:**
 - Python 3.11
-- System dependencies: None (PySide6 and PyInstaller are pure Python)
+- Windows OS (for PySide6 native performance)
 
 **Install command:**
 ```bash
@@ -19,19 +19,25 @@ python main_window.py
 ```
 
 **Configuration:**
-No environment variables are required. The application uses a local `transactions.json` file for data storage, which will be created automatically on first run.
+- The application uses a local JSON file (`transactions.json`) for data storage, created automatically in the same directory as the script.
+- No environment variables are required.
 
 ## 3. Project Status
 
 | Issue | Title | Status |
 |-------|-------|--------|
-| #70 | Fix DataStore to emit Qt signal for data changes | ✅ Done |
+| #80 | Fix DataStore singleton pattern for QObject compatibility | ⚠️ Needs Rework |
+| #81 | Implement proper QObject-compatible singleton pattern for DataStore | ❌ Not Started |
+| #83 | Add unit tests for DataStore singleton pattern and QObject compatibility | ❌ Not Started |
+| #84 | (Unknown title - not provided in QA report) | ❌ Not Started |
 
 ## 4. Known Issues
 
-None — all implemented features passed QA review.
+- The DataStore singleton pattern is not properly implemented for QObject compatibility, causing potential TypeError with multiple instantiations.
+- No unit tests exist to verify the singleton behavior or QObject compatibility.
+- Issue #84 title is unknown as it was not provided in the QA report.
 
-## 5. How to Resume
+## 5. How To Resume
 
 To continue development, run:
 
