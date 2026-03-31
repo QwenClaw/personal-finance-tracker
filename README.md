@@ -125,3 +125,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 22 — #38: CSV importer refund handling inconsistency
 
 **REQUEST_CHANGES** — The CSV importer correctly stores refunds as positive amounts with is_refund=True, but the Transaction model's validation logic is not shown in the changed files. The acceptance criteria require ensuring the Transaction model allows negative amounts for refunds, which cannot be verified without reviewing the Transaction model code. Additionally, the CSV importer's _generate_id function uses abs(amount), which may cause deduplication issues for refund transactions if the original transaction was already imported.
+
+### Cycle 23 — #40: Correct net spent calculation in DashboardWidget
+
+**REQUEST_CHANGES** — The net_spent calculation in load_data() is incorrect: it adds total_refunds (which are already positive values from summing -amount) to total_spent, effectively double-counting refunds. This violates the acceptance criteria for accurate net spent calculation. The category breakdown also excludes refunds, which may affect display accuracy.
