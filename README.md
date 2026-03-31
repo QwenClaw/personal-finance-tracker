@@ -201,3 +201,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 41 — #76: Fix DataStore singleton pattern for QObject compatibility
 
 **REQUEST_CHANGES** — The implementation partially meets the acceptance criteria but has a critical bug: the __new__ method incorrectly calls super().__new__(cls) which is not valid for QObject subclasses. This will cause a TypeError when instantiating DataStore. Additionally, the singleton pattern is not properly protected against multiple initializations in a multi-instance scenario, though the current code may work in practice.
+
+### Cycle 42 — #78: Fix DataStore __new__ method for QObject compatibility
+
+**REJECT** — The implementation does not meet all acceptance criteria. The DataStore's __new__ method still uses object.__new__(cls), which is not compatible with QObject subclasses and may cause issues. Additionally, the singleton pattern is not properly managed for QObject, and the code lacks tests for the new logic.
