@@ -120,7 +120,8 @@ class TransactionFormWidget(QWidget):
                 amount=amount,
                 date=date_str,
                 category=category,
-                description=description
+                description=description,
+                is_refund=is_refund
             )
             
             # Add to data store
