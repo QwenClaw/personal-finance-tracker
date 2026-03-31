@@ -66,7 +66,7 @@ class CSVImporter:
                         description = row['description'].strip()
                         
                         # Generate unique ID for deduplication
-                        transaction_id = self._generate_id(date, amount, description)
+                        transaction_id = self._generate_id(date, amount, description, is_refund)
                         
                         # Skip if already seen
                         if transaction_id in self.seen_transactions:
