@@ -7,13 +7,14 @@ from PySide6.QtCore import QObject, Signal
 
 class DataStore(QObject):
     """Singleton class to manage all data operations."""
-    _instance = None
+    _instances = {}
     data_changed = Signal()
     
     def __new__(cls, json_path: str = "transactions.json"):
-        if cls._instance is None:
-            cls._instance = object.__new__(cls)
-        return cls._instance
+        if json_path not in cls._instances:
+            instance = super().__new__(cls)
+            cls._instances[json_path] = instance
+        return cls._instances[json_path]
     
     def __init__(self, json_path: str = "transactions.json"):
         # Only initialize if not already initialized
