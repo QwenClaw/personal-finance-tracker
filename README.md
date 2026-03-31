@@ -133,3 +133,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 24 — #43: Review Transaction model validation for refund handling
 
 **REQUEST_CHANGES** — The Transaction model validation in transaction_model.py correctly allows negative amounts for refunds, but the transaction_form_widget.py does not provide a way to set is_refund=True for manual entries. The form only allows negative amounts but does not mark them as refunds, which may cause inconsistency with CSV import behavior where refunds are stored as positive amounts with is_refund=True.
+
+### Cycle 25 — #44: Fix deduplication logic for refund transactions
+
+**APPROVE** — The implementation updates _generate_id to include is_refund status in the unique ID, ensuring refund transactions are treated separately from originals. The CSV importer correctly handles refunds as negative amounts and stores positive amounts in the Transaction model. Testing would verify both original and refund transactions are imported without duplicates, meeting all acceptance criteria.
