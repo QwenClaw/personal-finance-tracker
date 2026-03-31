@@ -775,3 +775,23 @@ FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_pa
 ```
 
 The implementation does not fully meet the acceptance criteria. The DataStore singleton pattern with PySide6 QObject still risks multiple __init__ calls and signal connection issues, as the __init__ method can be called multiple times when the singleton is accessed with different arguments. Additionally, the existing tests in tests/test_data_store.py are not verified to pass, and the code lacks explicit handling to prevent multiple signal connections.
+
+### Cycle 69 — #115: Fix runtime crash detected by QA sandbox
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+......F                                                                  [100%]
+================================== FAILURES ===================================
+______________ TestDataStore.test_singleton_different_json_paths ______________
+tests\test_data_store.py:44: in test_singleton_different_json_paths
+    self.assertEqual(ds1.json_path, "path1.json")
+E   AssertionError: 'test_transactions.json' != 'path1.json'
+E   - test_transactions.json
+E   + path1.json
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_paths
+1 failed, 6 passed in 0.25s
+```
+
+The implementation does not meet the acceptance criteria because the DataStore class, which inherits from QObject, fails to instantiate correctly due to an incorrect singleton pattern that conflicts with PySide6's object creation requirements. The test suite crashes during setup, indicating a critical runtime bug that prevents the application from functioning. No tests were added to verify the fix, which is required for new logic.
