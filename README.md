@@ -477,3 +477,7 @@ The implementation does not include any unit tests for the DataStore class, whic
 ### Cycle 53 — #94: Fix runtime crash detected by QA sandbox
 
 **REJECT** — The implementation fails to fix the runtime crash. The error 'RuntimeError: Signal source has been deleted' occurs because the DataStore singleton is being re-initialized in tests, causing the QObject parent to be deleted and the signal to become invalid. The __new__ and __init__ methods do not properly handle singleton re-initialization across test runs, and the signal is not protected from being emitted after the QObject is deleted.
+
+### Cycle 54 — #95: Create unit tests for DataStore singleton and signal functionality
+
+**REJECT** — The issue requires creating unit tests for DataStore, but no test file was added. The changed files only include existing application code and do not address the acceptance criteria for testing singleton behavior, signal emission, and method functionality.
