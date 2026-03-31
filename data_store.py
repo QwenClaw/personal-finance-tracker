@@ -2,28 +2,24 @@ import json
 import os
 from typing import List, Optional, Callable
 from transaction_model import Transaction
+from PySide6.QtCore import QObject, Signal
 
 
-class DataStore:
+class DataStore(QObject):
     """Singleton class to manage all data operations."""
     _instance = None
+    data_changed = Signal()
     
     def __new__(cls, json_path: str = "transactions.json"):
         if cls._instance is None:
             cls._instance = object.__new__(cls)
             cls._instance.json_path = json_path
             cls._instance.transactions = []
-            cls._instance._data_changed_callbacks = []
         return cls._instance
     
-    def register_callback(self, callback: Callable[[], None]) -> None:
-        """Register a callback to be called when data changes."""
-        self._data_changed_callbacks.append(callback)
-    
     def _emit_data_changed(self) -> None:
-        """Emit data changed signal to all registered callbacks."""
-        for callback in self._data_changed_callbacks:
-            callback()
+        """Emit data changed signal."""
+        self.data_changed.emit()
     
     def load(self) -> None:
         """Load transactions from JSON file."""
