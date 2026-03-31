@@ -51,6 +51,13 @@ class TransactionFormWidget(QWidget):
         desc_layout.addWidget(self.description_input)
         layout.addLayout(desc_layout)
         
+        # Refund checkbox
+        refund_layout = QHBoxLayout()
+        self.refund_checkbox = QCheckBox("Mark as Refund")
+        refund_layout.addWidget(self.refund_checkbox)
+        refund_layout.addStretch()
+        layout.addLayout(refund_layout)
+        
         # Submit button
         self.submit_button = QPushButton("Add Transaction")
         self.submit_button.clicked.connect(self.add_transaction)
