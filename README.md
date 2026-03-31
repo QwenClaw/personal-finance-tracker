@@ -145,3 +145,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 27 — #49: Add refund flag to manual transaction entry
 
 **APPROVE** — The implementation adds a refund checkbox to the Transaction Form Widget and updates the add_transaction method to set is_refund=True when checked. It also enforces validation that refund amounts must be positive, matching the CSV import behavior. All acceptance criteria are met with no critical bugs.
+
+### Cycle 28 — #52: Fix category breakdown to show refunds as negative amounts
+
+**REQUEST_CHANGES** — The implementation partially addresses the issue by using `t.is_refund` to negate amounts in category totals, but it incorrectly assumes refunds are stored as positive amounts with `is_refund=True`. The Transaction model stores refunds as negative amounts, so the logic should simply add `t.amount` directly for all transactions to correctly show refunds as negative. This misalignment could lead to incorrect category breakdowns.
