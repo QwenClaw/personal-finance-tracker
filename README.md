@@ -181,3 +181,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 36 — #68: Remove QObject inheritance from DataStore to fix singleton error
 
 **APPROVE** — The implementation successfully removes QObject inheritance from DataStore, replacing it with a custom callback mechanism for data change notifications. The singleton pattern is preserved, and the application should launch without RuntimeError. All acceptance criteria are met.
+
+### Cycle 37 — #66: Error while running the application
+
+**REQUEST_CHANGES** — The implementation fails to meet the acceptance criteria due to a critical bug: the DataStore class does not have a 'data_changed' signal attribute, causing an AttributeError when DashboardWidget tries to connect to it. The DataStore uses a callback system instead of a Qt signal, which is incompatible with the DashboardWidget's expectation of a signal. This prevents the application from launching.
