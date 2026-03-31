@@ -350,3 +350,50 @@ FAILED tests/test_data_store.py::TestDataStore::test_signal_emission - Runtim...
 ```
 
 The implementation meets most acceptance criteria but fails to verify signal emission in tests. The changed file only adds the DataStore class without any test file, and the issue explicitly requires tests for signal emission, singleton behavior, and all methods. No tests were written, which violates the acceptance criteria and decision rules.
+
+### Cycle 47 — #86: Create unit tests for DataStore singleton and signal functionality
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+FFFF.                                                                    [100%]
+================================== FAILURES ===================================
+_____________________ TestDataStore.test_add_transaction ______________________
+tests\test_data_store.py:40: in test_add_transaction
+    self.data_store.add_transaction(transaction)
+data_store.py:70: in add_transaction
+    self._emit_data_changed()
+data_store.py:29: in _emit_data_changed
+    self.data_changed.emit()
+E   RuntimeError: Signal source has been deleted
+________________ TestDataStore.test_get_transactions_by_month _________________
+tests\test_data_store.py:46: in test_get_transactions_by_month
+    self.data_store.add_transaction(t1)
+data_store.py:70: in add_transaction
+    self._emit_data_changed()
+data_store.py:29: in _emit_data_changed
+    self.data_changed.emit()
+E   RuntimeError: Signal source has been deleted
+______________________ TestDataStore.test_save_and_load _______________________
+tests\test_data_store.py:53: in test_save_and_load
+    self.data_store.add_transaction(t)
+data_store.py:70: in add_transaction
+    self._emit_data_changed()
+data_store.py:29: in _emit_data_changed
+    self.data_changed.emit()
+E   RuntimeError: Signal source has been deleted
+_____________________ TestDataStore.test_signal_emission ______________________
+tests\test_data_store.py:29: in test_signal_emission
+    self.data_store.register_callback(callback_mock)
+data_store.py:33: in register_callback
+    self.data_changed.connect(callback)
+E   RuntimeError: Signal source has been deleted
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_add_transaction - Runtim...
+FAILED tests/test_data_store.py::TestDataStore::test_get_transactions_by_month
+FAILED tests/test_data_store.py::TestDataStore::test_save_and_load - RuntimeE...
+FAILED tests/test_data_store.py::TestDataStore::test_signal_emission - Runtim...
+4 failed, 1 passed in 0.30s
+```
+
+The issue requires creating unit tests for DataStore, but no test file was added. The changed files only include existing application code and do not address the acceptance criteria of verifying singleton behavior, signal emission, and method functionality through tests.
