@@ -401,3 +401,21 @@ The issue requires creating unit tests for DataStore, but no test file was added
 ### Cycle 48 — #87: Fix runtime crash detected by QA sandbox
 
 **REJECT** — The implementation fails to meet the acceptance criteria because the DataStore singleton pattern is broken. The __new__ method uses QObject.__new__(cls) which is unsafe for QObject subclasses, causing a TypeError during instantiation. This prevents the application from running and causes all tests to fail.
+
+### Cycle 49 — #89: Fix QObject-compatible singleton pattern for DataStore
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+....F                                                                    [100%]
+================================== FAILURES ===================================
+____________________ TestDataStore.test_singleton_behavior ____________________
+tests\test_data_store.py:25: in test_singleton_behavior
+    self.assertIs(ds1, ds2)
+E   AssertionError: <data_store.DataStore object at 0x00000174199DF880> is not <data_store.DataStore object at 0x00000174199DF8C0>
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_behavior - Ass...
+1 failed, 4 passed in 0.32s
+```
+
+The implementation does not meet all acceptance criteria. The DataStore class still uses a singleton pattern that may cause issues with QObject compatibility, as it returns early in __init__ without calling super().__init__() for the existing instance. Additionally, there are no tests provided for the new singleton logic, which is required for non-trivial changes.
