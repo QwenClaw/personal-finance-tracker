@@ -109,3 +109,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 18 — #33: Transaction model validation does not allow negative amounts
 
 **APPROVE** — The updated Transaction model correctly allows negative amounts while still rejecting zero amounts, meeting both acceptance criteria. The validation logic in __post_init__ now explicitly permits negative values and maintains the zero amount check. No critical bugs or missing criteria were found in the implementation.
+
+### Cycle 19 — #36: Unable to follow handover document
+
+**REQUEST_CHANGES** — The implementation partially meets the issue's acceptance criteria but has critical bugs. The main_window.py script runs without error, but the requirements.txt file is missing, preventing proper environment setup. Additionally, the CSV importer's refund handling logic is inconsistent with the Transaction model's validation, which only allows positive amounts.
