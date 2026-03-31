@@ -551,3 +551,7 @@ FAILED tests/test_data_store.py::TestDataStore::test_save_and_load - Assertio...
 ```
 
 The implementation does not meet all acceptance criteria. The DataStore class still overrides __new__, which is unsafe with QObject and can cause TypeError. Additionally, the singleton pattern is not thread-safe and may create multiple instances if called with different json_path values. No tests were provided to verify the fix.
+
+### Cycle 57 — #100: Fix DataStore singleton pattern for QObject compatibility
+
+**APPROVE** — The implementation meets all acceptance criteria: DataStore can be instantiated without TypeError, remains a singleton via __new__, properly inherits from QObject with a signal, and all existing methods continue to work. The singleton pattern is correctly implemented with class-level instance tracking and proper QObject initialization.
