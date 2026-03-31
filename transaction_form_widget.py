@@ -144,3 +144,4 @@ class TransactionFormWidget(QWidget):
         self.date_input.setText(QDate.currentDate().toString("yyyy-MM-dd"))
         self.category_combo.setCurrentIndex(0)
         self.description_input.clear()
+        self.refund_checkbox.setChecked(False)
