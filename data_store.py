@@ -17,14 +17,11 @@ class DataStore(QObject):
         return cls._instance
     
     def __init__(self, json_path: str = "transactions.json"):
-        # Only initialize QObject if not already initialized
+        # Only initialize QObject and attributes if not already initialized
         if not hasattr(self, 'json_path'):
             super().__init__()  # Correct QObject initialization
             self.json_path = json_path
             self.transactions = []
-        # Update json_path if a different one is provided
-        elif self.json_path != json_path:
-            self.json_path = json_path
     
     def _emit_data_changed(self) -> None:
         """Emit data changed signal."""
