@@ -137,3 +137,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 25 — #44: Fix deduplication logic for refund transactions
 
 **APPROVE** — The implementation updates _generate_id to include is_refund status in the unique ID, ensuring refund transactions are treated separately from originals. The CSV importer correctly handles refunds as negative amounts and stores positive amounts in the Transaction model. Testing would verify both original and refund transactions are imported without duplicates, meeting all acceptance criteria.
+
+### Cycle 26 — #46: Fix net_spent calculation and include refunds in category breakdown
+
+**REQUEST_CHANGES** — The net_spent calculation is correct (total_spent - total_refunds), but the category breakdown incorrectly includes refunds as positive amounts in their categories, which misrepresents spending patterns. The acceptance criteria require refunds to be shown as negative amounts in their respective categories.
