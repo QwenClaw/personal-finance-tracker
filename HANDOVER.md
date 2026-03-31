@@ -1,12 +1,12 @@
 ## 1. What Was Built
 
-This project is a desktop personal finance tracker that lets you manually enter transactions or import them from bank CSV files. It automatically categorizes expenses, displays monthly totals and category breakdowns, and saves all data locally in a simple JSON file. The application runs offline as a single executable and features a modern dark theme for easy viewing.
+A desktop personal finance tracker application for Windows that allows users to manually enter transactions and import bank CSV files for automatic categorization. The software provides a dashboard with monthly totals and category breakdowns, stores all data locally in a single JSON file for easy backup, and can be compiled into a standalone executable for offline use. All core features for tracking income and expenses have been implemented and passed QA review.
 
 ## 2. Getting Started
 
 **Prerequisites:**
 - Python 3.11
-- No system dependencies required
+- System dependencies: None (PySide6 will install required Qt libraries)
 
 **Install command:**
 ```bash
@@ -19,13 +19,14 @@ python main_window.py
 ```
 
 **Configuration:**
-- No environment variables needed. The application creates and uses a local `transactions.json` file in the same directory for data storage.
+- No environment variables needed. The application creates and uses a local `finance_data.json` file in the same directory for data storage.
 
 ## 3. Project Status
 
 | Issue | Title | Status |
 |-------|-------|--------|
-| #55 | Correct refund handling in DashboardWidget category breakdown | ✅ Done |
+| #58 | Update build.py to reference correct main script | ✅ Done |
+| #59 | (Open issue - title not provided) | ❌ Not Started |
 
 ## 4. Known Issues
 
