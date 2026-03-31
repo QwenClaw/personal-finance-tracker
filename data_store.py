@@ -10,21 +10,17 @@ class DataStore(QObject):
     _instance = None
     data_changed = Signal()
     
-    def __new__(cls, json_path: str = "transactions.json"):
-        if cls._instance is None:
-            # Use QObject.__new__ to ensure QObject compatibility
-            cls._instance = QObject.__new__(cls)
-        return cls._instance
-    
     def __init__(self, json_path: str = "transactions.json"):
-        # Check if already initialized to avoid re-initialization
-        if hasattr(self, '_initialized') and self._initialized:
+        # Return existing instance if already initialized
+        if DataStore._instance is not None:
             return
         
         # Initialize QObject part
         super().__init__()
         
-        self._initialized = True
+        # Set singleton instance
+        DataStore._instance = self
+        
         self.json_path = json_path
         self.transactions = []
     
