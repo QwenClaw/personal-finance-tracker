@@ -12,7 +12,7 @@ class DataStore(QObject):
     
     def __new__(cls, json_path: str = "transactions.json"):
         if cls._instance is None:
-            cls._instance = object.__new__(cls)
+            cls._instance = QObject.__new__(cls)
             cls._instance.json_path = json_path
             cls._instance.transactions = []
         return cls._instance
