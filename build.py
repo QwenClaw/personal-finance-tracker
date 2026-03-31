@@ -2,7 +2,7 @@ import PyInstaller.__main__
 import os
 
 # Path to the main script
-script_path = 'main.py'
+script_path = 'main_window.py'
 
 # PyInstaller arguments
 args = [
