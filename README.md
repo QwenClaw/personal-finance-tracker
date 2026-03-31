@@ -555,3 +555,7 @@ The implementation does not meet all acceptance criteria. The DataStore class st
 ### Cycle 57 — #100: Fix DataStore singleton pattern for QObject compatibility
 
 **APPROVE** — The implementation meets all acceptance criteria: DataStore can be instantiated without TypeError, remains a singleton via __new__, properly inherits from QObject with a signal, and all existing methods continue to work. The singleton pattern is correctly implemented with class-level instance tracking and proper QObject initialization.
+
+### Cycle 58 — #101: Add unit tests for DataStore singleton pattern
+
+**REJECT** — The issue requires adding unit tests for the DataStore singleton pattern, but no test files were provided in the changed files. The acceptance criteria specify testing singleton behavior, QObject compatibility, and signal emission, yet no tests exist to verify these. This violates the decision rule that requires tests when new logic is implemented.
