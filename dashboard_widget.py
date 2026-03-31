@@ -91,7 +91,7 @@ class DashboardWidget(QWidget):
         # Calculate totals
         total_spent = sum(t.amount for t in transactions if t.amount > 0)
         total_refunds = sum(-t.amount for t in transactions if t.amount < 0)
-        net_spent = total_spent - total_refunds
+        net_spent = total_spent + total_refunds
         
         # Category breakdown
         category_totals = defaultdict(float)
