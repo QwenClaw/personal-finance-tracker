@@ -649,3 +649,25 @@ FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_pa
 ```
 
 The DataStore singleton pattern fails to properly initialize QObject for existing instances, causing 'Signal source has been deleted' errors in tests. The __new__ method returns the existing instance without ensuring QObject initialization, and the __init__ method's guard condition (checking for 'json_path' attribute) may not reliably prevent re-initialization. All acceptance criteria are not met.
+
+### Cycle 63 — #107: Fix runtime crash detected by QA sandbox
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+......F                                                                  [100%]
+================================== FAILURES ===================================
+______________ TestDataStore.test_singleton_different_json_paths ______________
+tests\test_data_store.py:44: in test_singleton_different_json_paths
+    self.assertEqual(ds1.json_path, "path1.json")
+E   AssertionError: 'path2.json' != 'path1.json'
+E   - path2.json
+E   ?     ^
+E   + path1.json
+E   ?     ^
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_paths
+1 failed, 6 passed in 0.25s
+```
+
+The implementation fails the singleton test because the `__new__` method returns a new instance when `json_path` differs, breaking the singleton guarantee. The `__init__` method also incorrectly reinitializes the instance when a different path is provided, which can cause data loss or inconsistent state.
