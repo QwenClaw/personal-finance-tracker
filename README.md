@@ -185,3 +185,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 37 — #66: Error while running the application
 
 **REQUEST_CHANGES** — The implementation fails to meet the acceptance criteria due to a critical bug: the DataStore class does not have a 'data_changed' signal attribute, causing an AttributeError when DashboardWidget tries to connect to it. The DataStore uses a callback system instead of a Qt signal, which is incompatible with the DashboardWidget's expectation of a signal. This prevents the application from launching.
+
+### Cycle 38 — #70: Fix DataStore to emit Qt signal for data changes
+
+**APPROVE** — The DataStore class has been correctly updated to inherit from QObject and define a 'data_changed' Qt signal. The signal is emitted in the _emit_data_changed method, and the class now properly supports Qt signal-slot connections. The implementation meets all acceptance criteria, and the application should launch without AttributeError.
