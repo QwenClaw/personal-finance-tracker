@@ -14,12 +14,16 @@ class DataStore(QObject):
         if cls._instance is None:
             # Use QObject.__new__ to ensure QObject compatibility
             cls._instance = QObject.__new__(cls)
-            cls._instance._initialized = False
         return cls._instance
     
     def __init__(self, json_path: str = "transactions.json"):
-        if self._initialized:
+        # Check if already initialized to avoid re-initialization
+        if hasattr(self, '_initialized') and self._initialized:
             return
+        
+        # Initialize QObject part
+        super().__init__()
+        
         self._initialized = True
         self.json_path = json_path
         self.transactions = []
