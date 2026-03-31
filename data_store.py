@@ -19,7 +19,7 @@ class DataStore(QObject):
     def __init__(self, json_path: str = "transactions.json"):
         # Only initialize if not already initialized
         if not hasattr(self, 'json_path'):
-            super().__init__()
+            super().__init__(self)  # Pass self to QObject.__init__
             self.json_path = json_path
             self.transactions = []
     
