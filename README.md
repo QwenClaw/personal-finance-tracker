@@ -397,3 +397,7 @@ FAILED tests/test_data_store.py::TestDataStore::test_signal_emission - Runtim...
 ```
 
 The issue requires creating unit tests for DataStore, but no test file was added. The changed files only include existing application code and do not address the acceptance criteria of verifying singleton behavior, signal emission, and method functionality through tests.
+
+### Cycle 48 — #87: Fix runtime crash detected by QA sandbox
+
+**REJECT** — The implementation fails to meet the acceptance criteria because the DataStore singleton pattern is broken. The __new__ method uses QObject.__new__(cls) which is unsafe for QObject subclasses, causing a TypeError during instantiation. This prevents the application from running and causes all tests to fail.
