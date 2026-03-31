@@ -161,3 +161,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 31 — #57: Fix main_window.py to include application launch block
 
 **APPROVE** — The implementation meets all acceptance criteria: main_window.py includes a proper if __name__ == '__main__' block that creates a QApplication, instantiates MainWindow, shows it, and executes the event loop. The application can be launched directly with 'python main_window.py' without errors, as the block is correctly placed at the end of the file.
+
+### Cycle 32 — #58: Update build.py to reference correct main script
+
+**APPROVE** — The build.py file has been correctly updated to reference 'main_window.py' as the script path, meeting the primary acceptance criterion. The build process includes proper error handling for executable verification and size checks, ensuring it completes without file-not-found errors. No critical bugs or missing criteria were identified in the review.
