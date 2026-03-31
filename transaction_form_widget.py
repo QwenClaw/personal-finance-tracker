@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import (QWidget, QLabel, QLineEdit, QComboBox, QPushButton,
-                             QVBoxLayout, QHBoxLayout, QMessageBox)
+                             QVBoxLayout, QHBoxLayout, QMessageBox, QCheckBox)
 from PySide6.QtCore import QDate
 from transaction_model import Transaction
 from data_store import DataStore
