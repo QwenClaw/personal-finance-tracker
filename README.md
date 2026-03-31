@@ -141,3 +141,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 26 — #46: Fix net_spent calculation and include refunds in category breakdown
 
 **REQUEST_CHANGES** — The net_spent calculation is correct (total_spent - total_refunds), but the category breakdown incorrectly includes refunds as positive amounts in their categories, which misrepresents spending patterns. The acceptance criteria require refunds to be shown as negative amounts in their respective categories.
+
+### Cycle 27 — #49: Add refund flag to manual transaction entry
+
+**APPROVE** — The implementation adds a refund checkbox to the Transaction Form Widget and updates the add_transaction method to set is_refund=True when checked. It also enforces validation that refund amounts must be positive, matching the CSV import behavior. All acceptance criteria are met with no critical bugs.
