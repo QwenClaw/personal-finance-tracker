@@ -528,3 +528,26 @@ tests\test_data_store.py:16: in setUp
 ```
 
 The implementation fails to meet the acceptance criteria because the DataStore class causes a RuntimeError due to signal emission after the signal source is deleted. This occurs because the singleton pattern in PySide6 QObject subclasses can lead to multiple initializations and signal connections that outlive the object. The fix requires ensuring proper singleton behavior and signal lifecycle management.
+
+### Cycle 56 — #98: Fix DataStore singleton pattern for QObject compatibility
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+.FF..                                                                    [100%]
+================================== FAILURES ===================================
+________________ TestDataStore.test_get_transactions_by_month _________________
+tests\test_data_store.py:49: in test_get_transactions_by_month
+    self.assertEqual(len(jan), 1)
+E   AssertionError: 2 != 1
+______________________ TestDataStore.test_save_and_load _______________________
+tests\test_data_store.py:58: in test_save_and_load
+    self.assertEqual(len(new_store.transactions), 1)
+E   AssertionError: 4 != 1
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_get_transactions_by_month
+FAILED tests/test_data_store.py::TestDataStore::test_save_and_load - Assertio...
+2 failed, 3 passed in 0.28s
+```
+
+The implementation does not meet all acceptance criteria. The DataStore class still overrides __new__, which is unsafe with QObject and can cause TypeError. Additionally, the singleton pattern is not thread-safe and may create multiple instances if called with different json_path values. No tests were provided to verify the fix.
