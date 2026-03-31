@@ -93,13 +93,11 @@ class DashboardWidget(QWidget):
         total_refunds = sum(-t.amount for t in transactions if t.amount < 0)
         net_spent = total_spent - total_refunds
         
-        # Category breakdown (include refunds as negative amounts)
+        # Category breakdown (refunds are stored as negative amounts)
         category_totals = defaultdict(float)
         for t in transactions:
-            # Refunds are stored as positive amounts with is_refund=True
-            # For display, refunds should be shown as negative amounts
-            amount = -t.amount if t.is_refund else t.amount
-            category_totals[t.category] += amount
+            # Simply add the amount directly; refunds are already negative
+            category_totals[t.category] += t.amount
         
         # Display totals
         totals_label = QLabel(f"Total Spent: ${total_spent:.2f} | Net Spent: ${net_spent:.2f}")
