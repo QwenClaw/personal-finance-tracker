@@ -23,7 +23,7 @@ class CSVImporter:
     
     def _generate_id(self, date: str, amount: float, description: str) -> str:
         """Generate a unique ID based on transaction details for deduplication."""
-        return f"{date}_{amount}_{description}"
+        return f"{date}_{abs(amount)}_{description}"
     
     def _categorize(self, description: str) -> str:
         """Auto-categorize transaction based on keywords in description."""
