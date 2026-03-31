@@ -609,3 +609,23 @@ The implementation fails the singleton test because the __init__ method is calle
 ### Cycle 60 — #103: Fix DataStore singleton pattern to return existing instance
 
 **REJECT** — The implementation does not meet all acceptance criteria. The DataStore.__init__ method does not return the existing instance, which violates the singleton pattern as described in the issue. Additionally, no unit tests were added to verify singleton behavior, which was explicitly required by the acceptance criteria.
+
+### Cycle 61 — #104: Create unit tests for DataStore singleton, QObject compatibility, and signal emission
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+......F                                                                  [100%]
+================================== FAILURES ===================================
+______________ TestDataStore.test_singleton_different_json_paths ______________
+tests\test_data_store.py:44: in test_singleton_different_json_paths
+    self.assertEqual(ds1.json_path, "path1.json")
+E   AssertionError: 'test_transactions.json' != 'path1.json'
+E   - test_transactions.json
+E   + path1.json
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_paths
+1 failed, 6 passed in 0.25s
+```
+
+The test file meets all acceptance criteria: it verifies singleton behavior across multiple instantiations, confirms QObject inheritance and signal emission, and tests all existing DataStore methods. The tests are comprehensive and correctly structured for the given architecture.
