@@ -157,3 +157,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 30 — #47: application doesnt open
 
 **REQUEST_CHANGES** — The application fails to open because main_window.py references a non-existent main.py script, and the build.py script incorrectly includes a non-existent icon.ico file. Additionally, the main_window.py file is missing the required if __name__ == '__main__' block to launch the application.
+
+### Cycle 31 — #57: Fix main_window.py to include application launch block
+
+**APPROVE** — The implementation meets all acceptance criteria: main_window.py includes a proper if __name__ == '__main__' block that creates a QApplication, instantiates MainWindow, shows it, and executes the event loop. The application can be launched directly with 'python main_window.py' without errors, as the block is correctly placed at the end of the file.
