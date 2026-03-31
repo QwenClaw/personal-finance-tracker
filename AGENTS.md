@@ -23,7 +23,8 @@ python -c "import <module>"  # quick import sanity check
 - Handle all error cases at system boundaries with try/except
 
 ## Known Pitfalls
-_(QA will append discovered bugs and edge cases here after each cycle)_
+
 
 ---
 *Auto-generated at project setup. Do not delete.*
+- **Issue #78 (Fix DataStore __new__ method for QObject compatibility)**: The implementation does not meet all acceptance criteria. The DataStore's __new__ method still uses object.__new__(cls), which is not compatible with QObject subclasses and may cause issues. Additionally, the singleton pattern is not properly managed for QObject, and the code lacks tests for the new
