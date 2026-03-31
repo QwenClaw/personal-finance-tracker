@@ -26,6 +26,10 @@ class DataStore(QObject):
     def _emit_data_changed(self) -> None:
         """Emit data changed signal."""
         self.data_changed.emit()
+
+    def register_callback(self, callback: Callable) -> None:
+        """Register a callback to be called when data changes."""
+        self.data_changed.connect(callback)
     
     def load(self) -> None:
         """Load transactions from JSON file."""
