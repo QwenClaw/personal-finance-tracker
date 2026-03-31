@@ -13,9 +13,15 @@ class DataStore(QObject):
     def __new__(cls, json_path: str = "transactions.json"):
         if cls._instance is None:
             cls._instance = QObject.__new__(cls)
-            cls._instance.json_path = json_path
-            cls._instance.transactions = []
+            cls._instance._initialized = False
         return cls._instance
+    
+    def __init__(self, json_path: str = "transactions.json"):
+        if self._initialized:
+            return
+        self._initialized = True
+        self.json_path = json_path
+        self.transactions = []
     
     def _emit_data_changed(self) -> None:
         """Emit data changed signal."""
