@@ -1,12 +1,14 @@
 import json
 import os
 from typing import List, Optional
+from PySide6.QtCore import QObject, Signal
 from transaction_model import Transaction
 
 
-class DataStore:
+class DataStore(QObject):
     """Singleton class to manage all data operations."""
     _instance = None
+    data_changed = Signal()
     
     def __new__(cls, json_path: str = "transactions.json"):
         if cls._instance is None:
