@@ -455,3 +455,21 @@ FAILED tests/test_data_store.py::TestDataStore::test_singleton_behavior - Ass...
 ```
 
 The test failures indicate a critical bug in the DataStore singleton implementation where the QObject signal source is being deleted, causing 'RuntimeError: Signal source has been deleted' when tests try to connect or emit signals. This occurs because the singleton pattern returns the existing instance without calling super().__init__(), leaving the QObject part uninitialized. The fix requires ensuring the QObject initialization happens exactly once.
+
+### Cycle 52 — #93: Create unit tests for DataStore class
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+....F                                                                    [100%]
+================================== FAILURES ===================================
+____________________ TestDataStore.test_singleton_behavior ____________________
+tests\test_data_store.py:25: in test_singleton_behavior
+    self.assertIs(ds1, ds2)
+E   AssertionError: <data_store.DataStore object at 0x000001D129EAFA40> is not <data_store.DataStore object at 0x000001D129EAFA80>
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_behavior - Ass...
+1 failed, 4 passed in 0.25s
+```
+
+The implementation does not include any unit tests for the DataStore class, which is a required acceptance criterion. The changed files only contain the existing code without any test files, meaning the issue's acceptance criteria are not met.
