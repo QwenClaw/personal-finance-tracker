@@ -189,3 +189,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 38 — #70: Fix DataStore to emit Qt signal for data changes
 
 **APPROVE** — The DataStore class has been correctly updated to inherit from QObject and define a 'data_changed' Qt signal. The signal is emitted in the _emit_data_changed method, and the class now properly supports Qt signal-slot connections. The implementation meets all acceptance criteria, and the application should launch without AttributeError.
+
+### Cycle 39 — #72: Error on start.
+
+**REQUEST_CHANGES** — The implementation fails to meet the acceptance criteria because the DataStore singleton pattern is incorrectly implemented for PySide6 QObject subclasses. The error occurs because QObject subclasses cannot use object.__new__() and must use QObject.__new__(). The current code attempts this but still triggers a TypeError, indicating the singleton pattern needs adjustment to work with PySide6's object model.
