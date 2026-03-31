@@ -713,3 +713,23 @@ FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_pa
 ```
 
 The implementation fails the singleton behavior test because the __new__ method returns a new instance when called with different arguments, violating the singleton pattern. The __init__ method also has flawed logic that can cause re-initialization issues. This critical bug must be fixed to ensure only one DataStore instance exists.
+
+### Cycle 66 — #111: Fix DataStore singleton initialization to prevent signal deletion errors
+
+**REJECT** — **Sandbox Execution Failed.**
+
+```
+......F                                                                  [100%]
+================================== FAILURES ===================================
+______________ TestDataStore.test_singleton_different_json_paths ______________
+tests\test_data_store.py:44: in test_singleton_different_json_paths
+    self.assertEqual(ds1.json_path, "path1.json")
+E   AssertionError: 'test_transactions.json' != 'path1.json'
+E   - test_transactions.json
+E   + path1.json
+=========================== short test summary info ===========================
+FAILED tests/test_data_store.py::TestDataStore::test_singleton_different_json_paths
+1 failed, 6 passed in 0.27s
+```
+
+The implementation does not fully meet the acceptance criteria. The singleton initialization is improved but still has a critical bug: the __init__ method runs on every instantiation, which can reset the transactions list and json_path if the singleton is accessed after the first creation. This violates the first acceptance criterion. Additionally, the signal handling may still be problematic if the singleton is re-initialized in tests, and the fix does not guarantee that the data_changed signal remains valid throughout the application lifecycle.
