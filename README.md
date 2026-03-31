@@ -153,3 +153,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 29 — #55: Correct refund handling in DashboardWidget category breakdown
 
 **APPROVE** — The implementation correctly addresses the issue by removing the incorrect `is_refund` check and directly adding `t.amount` to category totals, ensuring refunds appear as negative amounts. The acceptance criteria are met: category breakdown shows refunds as negative amounts, and the dashboard accurately reflects spending patterns including refunds. No critical bugs or missing criteria were found.
+
+### Cycle 30 — #47: application doesnt open
+
+**REQUEST_CHANGES** — The application fails to open because main_window.py references a non-existent main.py script, and the build.py script incorrectly includes a non-existent icon.ico file. Additionally, the main_window.py file is missing the required if __name__ == '__main__' block to launch the application.
