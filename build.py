@@ -10,7 +10,7 @@ args = [
     '--onefile',
     '--windowed',
     '--name=PersonalFinanceManager',
-    '--icon=icon.ico',  # Optional: add an icon if you have one
+
     '--add-data=transactions.json;.',  # Include the data file
     '--clean',
     '--noconfirm'
