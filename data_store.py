@@ -60,7 +60,7 @@ class DataStore:
         """Add a transaction and auto-save."""
         self.transactions.append(transaction)
         self.save()
-        self.data_changed.emit()
+        self._emit_data_changed()
     
     def get_transactions_by_month(self, year: int, month: int) -> List[Transaction]:
         """Get all transactions for a specific month."""
