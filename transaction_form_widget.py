@@ -76,8 +76,19 @@ class TransactionFormWidget(QWidget):
                 amount = float(amount_str)
             except ValueError:
                 raise ValueError("Amount must be a number")
-            # Allow negative amounts for refunds (manual entry)
-            # The user can enter a negative amount to indicate a refund
+            
+            # Check refund status
+            is_refund = self.refund_checkbox.isChecked()
+            
+            # Validate amount based on refund status
+            if is_refund:
+                # For refunds, amount should be positive (stored as positive with is_refund=True)
+                if amount <= 0:
+                    raise ValueError("Refund amount must be positive")
+            else:
+                # For non-refunds, amount should be positive
+                if amount <= 0:
+                    raise ValueError("Amount must be positive for non-refund transactions")
             
             # Get and validate date
             date_str = self.date_input.text().strip()
