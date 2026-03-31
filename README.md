@@ -173,3 +173,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 34 — #62: Error when getting error.
 
 **REQUEST_CHANGES** — The implementation does not meet the acceptance criteria due to a critical bug: the DataStore singleton pattern incorrectly inherits from QObject, causing a RuntimeError when instantiated multiple times. The error trace shows the DataStore is being initialized twice, which violates the singleton pattern and prevents the application from launching.
+
+### Cycle 35 — #65: Fix DataStore singleton pattern to avoid QObject initialization error
+
+**REQUEST_CHANGES** — The DataStore class still inherits from QObject, which will cause a RuntimeError on multiple instantiations due to QObject's restriction on multiple inheritance. The singleton pattern is implemented, but the QObject base class is the root cause of the issue. The fix requires removing the QObject inheritance or using a different approach to avoid multiple QObject initializations.
