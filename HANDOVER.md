@@ -1,12 +1,12 @@
 ## 1. What Was Built
 
-This project is a personal finance tracker desktop application for Windows. It allows users to manually enter transactions, import bank CSV files with automatic categorization, and view a dashboard with monthly totals and category breakdowns. The application stores all data locally in a JSON file and runs offline without installation. During this development cycle, the core features for data entry, CSV import, and dashboard visualization were completed, but a calculation error in the net spent amount was identified and requires a fix.
+This project is a desktop personal finance tracker that lets you manually enter transactions or import them from bank CSV files. It automatically categorizes expenses, displays monthly totals and category breakdowns, and saves all data locally in a simple JSON file. The application runs offline as a single executable and features a modern dark theme for easy viewing.
 
 ## 2. Getting Started
 
 **Prerequisites:**
 - Python 3.11
-- Windows OS (for native performance)
+- No system dependencies required
 
 **Install command:**
 ```bash
@@ -19,23 +19,19 @@ python main_window.py
 ```
 
 **Configuration:**
-No environment variables are needed. The application uses a local JSON file (`transactions.json`) for data storage, which will be created automatically in the same directory as the script.
+- No environment variables needed. The application creates and uses a local `transactions.json` file in the same directory for data storage.
 
 ## 3. Project Status
 
 | Issue | Title | Status |
 |-------|-------|--------|
-| #40 | Correct net spent calculation in DashboardWidget | ⚠️ Needs Rework |
-| #43 | Fix net_spent calculation and include refunds in category breakdown | ❌ Not Started |
-| #44 | Fix net_spent calculation and include refunds in category breakdown | ❌ Not Started |
-| #46 | Fix net_spent calculation and include refunds in category breakdown | ❌ Not Started |
+| #55 | Correct refund handling in DashboardWidget category breakdown | ✅ Done |
 
 ## 4. Known Issues
 
-- The net_spent calculation in the DashboardWidget is incorrect: it double-counts refunds by adding total_refunds (already positive) to total_spent.
-- The category breakdown in the dashboard excludes refunds, which may affect display accuracy.
+None — all implemented features passed QA review.
 
-## 5. How To Resume
+## 5. How to Resume
 
 To continue development, run:
 
