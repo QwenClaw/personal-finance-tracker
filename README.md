@@ -193,3 +193,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 39 — #72: Error on start.
 
 **REQUEST_CHANGES** — The implementation fails to meet the acceptance criteria because the DataStore singleton pattern is incorrectly implemented for PySide6 QObject subclasses. The error occurs because QObject subclasses cannot use object.__new__() and must use QObject.__new__(). The current code attempts this but still triggers a TypeError, indicating the singleton pattern needs adjustment to work with PySide6's object model.
+
+### Cycle 40 — #74: Fix DataStore singleton pattern for PySide6 QObject compatibility
+
+**REQUEST_CHANGES** — The DataStore singleton pattern is incorrectly implemented for QObject subclasses. The __new__ method uses QObject.__new__(cls) which is not the correct way to create QObject instances, and the __init__ method may be called multiple times due to the singleton pattern, potentially causing issues with signal connections and initialization.
